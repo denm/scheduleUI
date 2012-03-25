@@ -159,3 +159,29 @@ Calendar = {
 		}
 	}
 };
+
+//TODO 
+var Les = [
+	{
+		"day": "1",
+		"les" : "1",
+		"Value" : "Математика, 310 каб."
+	},
+	{
+		"day": "1",
+		"les" : "2",
+		"Value" : "Программирование, 227 каб."
+	},
+	{
+		"day": "1",
+		"les" : "3",
+		"Value" : "Разработка ИС, 223 каб."
+	}
+];
+
+function Fill () {
+	$.each(Les, function (i, item) {
+		console.log(item);
+		$("#CalendarTable td[data-day="+item.day+"][data-les="+item.les+"]").html(item.Value);
+	});
+};
