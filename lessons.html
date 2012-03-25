@@ -31,26 +31,19 @@
     	<div class="navbar-inner">    		
     		<div class="container">    		
     		    <ul class="nav">
-    				<li class="active">
-    					<a href="index.html">Календарь</a>
-    				</li>
     				<li>
-    					<a href="#">Замены</a>
-    				</li>
-    				<li>
-    					<a href="#">Ещё что-то</a>
-    				</li>
-                    <li>
-                        <button class="btn  btn-success" data-toggle="button">Показать замены</button>
-                    </li>                    
+    					<a href="index.html">Назад</a>
+    				</li>    				
+    				<button class="btn btn-primary">Добавить</button>
     			</ul>
+
     			<ul class="nav pull-right">
     				<li class="dropdown">
     				<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Настройка <b class="caret"></b></a>
     					<ul class="dropdown-menu">
     					<li><a href="groups.html" title="Список групп">Список групп</a></li>
     					<li><a href="teachers.html" title="Список преподавателей">Список преподавателей</a></li>
-    					<li><a href="lessons.html" title="Список предметов">Список предметов</a></li>    					
+    					<li><a href="#" title="Список предметов">Список предметов</a></li>    					
     					</ul>
     				</li>
     			</ul>
@@ -59,56 +52,39 @@
     	</div>
     </div>
     <div class="container">
-        <input type="text" data-provide="typeahead" class="GroupSelectList" placeholder="Группа">        
-        <table class="table table-bordered" id="CalendarTable">
+	    <table class="table table-striped" id="LessonList">
             <thead>
                 <tr>
-                    <th width="20px">Пара</th>
-                    <th>Пн.</th>
-                    <th>Вт.</th>
-                    <th>Ср.</th>
-                    <th>Чт.</th>
-                    <th>Пт.</th>
-                    <th>Сб.</th>
-                    <th>Вс.</th>                    
+                    <th>#</th>
+                    <th>Дисциплина</th>
+                    <th>Код</th>
+                    <th>Кол-во часов</th>
+                    <th width="22%">Действия</th>
                 </tr>                  
             </thead>
-            <tbody>
-                      
-            </tbody>            
-        </table>        
-    </div>    
+            <tbody >                
+            </tbody>	    	
+	    </table>    	
+    </div> 
 
-    <!-- Modal new event -->
+    <!-- Modal delete -->
 
-    <div class="modal hide fade" id="newEvent">
+    <div class="modal hide fade" id="deleteItem">
         <div class="modal-header">
             <a class="close" data-dismiss="modal">×</a>
-            <h3>Новое событие</h3>
+            <h3>Удалить элемент?</h3>
         </div>
         <div class="modal-body">            
-            <div class="btn-group alignBtnGroup" data-toggle="buttons-radio">
-                <button class="btn btn-primary active">Оснавное расписание</button>
-                <button class="btn btn-primary">Замена</button>
-                <button class="btn btn-primary">Лабораторная работа</button>
-            </div>
-            <div class="newEventContent NEmainSchedule">
-                Оснавное расписание
-            </div>
-
-            <div class="newEventContent NEreplacement">
-                Замена
-            </div>
-
-            <div class="newEventContent NElWork">
-                Лабораторка
+            <div class="alert alert-error">
+                <p>Вы точно хотиту удалить элемент?</p>
             </div>
         </div>
         <div class="modal-footer">
             <a data-dismiss="modal" class="btn">Нет, не хочу</a>
-            <a href="#delete" class="btn btn-primary ">Да, добавить</a>
+            <a href="#" class="btn btn-danger">Да, удалить</a>
         </div>
     </div>
+
 	  <!-- javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -129,23 +105,16 @@
     <script src="assets/js/bootstrap-typeahead.js"></script>
     <script src="assets/js/app.js"></script>
     <script src="assets/js/application.js"></script>
-    <script>
-        Calendar.Create();
-        var Groups = [];
-        $.post("http://chemk.nekulin.ru/api/groups/getList", null, function (d) {
-            $.each(d, function (i, item) {
-                Groups[i] = item.name;
+    <script>            
+        $.post("http://chemk.nekulin.ru/api/lessons/getList", null, function (d) {
+            $.each(d, function (i, item) {                
+                Item.CreateLesson(item);
             })
-        }, "json");
-        $(".GroupSelectList").typeahead({
-            "source" : Groups
-        });
-
-        $(".calendarItem").click(function () {
-            $('#newEvent').modal('show');
-            //alert("Day " + $(this).attr("data-day") + " Lesson " + $(this).attr("data-les"));
-        });
-
+        }, "json");      
+          
+        setTimeout(function () {
+           BindingEvents(); 
+        }, 2000);        
     </script>
 </body>
 </html>

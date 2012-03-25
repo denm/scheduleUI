@@ -3988,3 +3988,15 @@ a.thumbnail:hover {
 .invisible {
   visibility: hidden;
 }
+
+/*My style*/
+.alignBtnGroup {
+  width: 373px;  
+  margin: auto;
+}
+
+.newEventContent {
+  margin: 10px 0;
+  padding: 5px;
+  width: auto;  
+}
