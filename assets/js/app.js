@@ -255,9 +255,64 @@ var Les = [
 	}
 ];
 
+var Rep = [
+	{
+		"day": "1",
+		"les" : "1",
+		"Value" : "Нет"
+	},
+	{
+		"day": "1",
+		"les" : "2",
+		"Value" : "Программирование, 227 каб."
+	},
+	{
+		"day": "1",
+		"les" : "3",
+		"Value" : "Разработка ИС, 223 каб."
+	},
+	{
+		"day": "1",
+		"les" : "4",
+		"Value" : "Математика, 223 каб."
+	},
+	{
+		"day": "5",
+		"les" : "6",
+		"Value" : "Математика, 223 каб."
+	},
+	{
+		"day": "4",
+		"les" : "4",
+		"Value" : "Математика, 223 каб."
+	},
+	{
+		"day": "4",
+		"les" : "5",
+		"Value" : "Нет"
+	},
+	{
+		"day": "2",
+		"les" : "1",
+		"Value" : "Математика, 223 каб."
+	},
+	{
+		"day": "3",
+		"les" : "3",
+		"Value" : "Математика, 223 каб."
+	}	
+];
+
 function Fill () {
 	$.each(Les, function (i, item) {
 		console.log(item);
 		$("#CalendarTable td[data-day="+item.day+"][data-les="+item.les+"]").html(item.Value);
+	});
+};
+
+function FillRep () {
+	$.each(Rep, function (i, item) {
+		console.log(item);
+		$("#CalendarTable td[data-day="+item.day+"][data-les="+item.les+"]").html(item.Value).css("background", "#E2F28F");
 	});
 };

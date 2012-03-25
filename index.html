@@ -41,7 +41,7 @@
     					<a href="#">Ещё что-то</a>
     				</li>
                     <li>
-                        <button class="btn  btn-success" data-toggle="button">Показать замены</button>
+                        <button class="btn  btn-success" data-toggle="button" id="showRep">Показать замены</button>
                     </li>                    
     			</ul>
     			<ul class="nav pull-right">
@@ -146,6 +146,10 @@
             //alert("Day " + $(this).attr("data-day") + " Lesson " + $(this).attr("data-les"));
         });
         Fill();
+
+        $("#showRep").click(function () {
+            FillRep();
+        });
     </script>
 </body>
 </html>
